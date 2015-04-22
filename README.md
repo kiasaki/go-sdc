@@ -14,9 +14,17 @@ Create a new SDC client, then use it's exposed methods to query the SDC API.
 
 ## Endpoints implemented
 
-### GetMachine `GET (/:login/machines/:id)`
+**ListMachines** `GET (/:login/machines)`
 
-### CreateMachine `POST (/:login/machines)`
+**GetMachine** `GET (/:login/machines/:id)`
+
+**CreateMachine** `POST (/:login/machines)`
+
+**DeleteMachine** `DELETE (/:login/machines/:id)`
+
+**StopMachine** `POST (/:login/machines/:id?action=stop)`
+
+**StartMachine** `POST (/:login/machines/:id?action=start)`
 
 ## Credits
 

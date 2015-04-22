@@ -28,9 +28,11 @@ import (
 	"time"
 )
 
-const SDC_VERSION = "~7.2"
-const JOYENT_SDC_URL = "https://us-west-1.api.joyentcloud.com"
-const GO_SDC_USER_AGENT = "go-sdc/0.1"
+const (
+	SDC_VERSION       = "~7.2"
+	JOYENT_SDC_URL    = "https://us-west-1.api.joyentcloud.com"
+	GO_SDC_USER_AGENT = "go-sdc/0.1"
+)
 
 // Client is a Manta client. Client is not safe for concurrent use.
 type Client struct {

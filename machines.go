@@ -1,6 +1,7 @@
 package sdc
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -32,14 +33,14 @@ type Machine struct {
 // ListMachines fetches all your machines from the SDC API.
 func (c *Client) ListMachines() ([]*Machine, error) {
 	response := []*Machine{}
-	_, err := c.Get("/my/machines", &response)
+	_, err := c.Get(fmt.Sprintf("/%s/machines", c.User), response)
 	return response, err
 }
 
 // GetMachine fetches a specific machine from the SDC api.
 func (c *Client) GetMachine(id string) (*Machine, error) {
-	response := *Machine{}
-	_, err := c.Get("/my/machines/"+id, &response)
+	response := &Machine{}
+	_, err := c.Get(fmt.Sprintf("/%s/machines/%s", c.User, id), response)
 	return response, err
 }
 
@@ -65,7 +66,29 @@ type CreateMachineRequest struct {
 // poll the GetMachine method utils the `state` is equal to "running"
 // for logging in and getting ips.
 func (c *Client) CreateMachine(request CreateMachineRequest) (*Machine, error) {
-	response := *Machine{}
-	_, err := c.Post("/my/machines", &request, &response)
+	response := &Machine{}
+	_, err := c.Post(fmt.Sprintf("/%s/machines", c.User), request, response)
 	return response, err
+}
+
+// DeleteMachine delete a machine from SDC.
+//
+// The machine about to be deleted must have a `state` of "stopped"
+func (c *Client) DeleteMachine(id string) error {
+	_, err := c.Delete(fmt.Sprintf("/%s/machines/%s", c.User, id), nil, nil)
+	return err
+}
+
+// StopMachine stops a running machine.
+func (c *Client) StopMachine(id string) error {
+	url := fmt.Sprintf("/%s/machines/%s?action=stop", c.User, id)
+	_, err := c.Post(url, nil, nil)
+	return err
+}
+
+// StartMachine stops a running machine.
+func (c *Client) StartMachine(id string) error {
+	url := fmt.Sprintf("/%s/machines/%s?action=start", c.User, id)
+	_, err := c.Post(url, nil, nil)
+	return err
 }

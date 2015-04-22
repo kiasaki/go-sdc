@@ -195,9 +195,9 @@ func (c *Client) Do(method, path string, data interface{}, resultJson interface{
 }
 
 func signRequest(req *http.Request, keyid string, priv Signer) error {
-	now := time.Now().UTC().Format(time.RFC1123)
+	now := time.Now().UTC().Format(http.TimeFormat)
 	req.Header.Set("date", now)
-	signed, err := priv.Sign([]byte(fmt.Sprintf("date: %s", now)))
+	signed, err := priv.Sign([]byte(now))
 	if err != nil {
 		return fmt.Errorf("could not sign request: %v", err)
 	}

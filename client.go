@@ -4,7 +4,7 @@
 // Included in the package is an incomplete implementation of the
 // CLI Utilities.
 // https://apidocs.joyent.com/cloudapi/#appendix-d-cloudapi-cli-commands
-package manta
+package sdc
 
 import (
 	"crypto"

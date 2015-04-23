@@ -23,6 +23,7 @@ func setup() {
 	server = httptest.NewServer(mux)
 
 	client = DefaultClient()
+	client.Key = "_testdata/id_rsa"
 	url, _ := url.Parse(server.URL)
 	client.Url = url.String()
 }

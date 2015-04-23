@@ -54,7 +54,7 @@ func TestSignRequest(t *testing.T) {
 	}
 	signRequest(req, "Test", priv)
 	date := req.Header.Get("date")
-	sig, err := priv.Sign([]byte("date: " + date))
+	sig, err := priv.Sign([]byte(date))
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -65,7 +65,7 @@ type CreateMachineRequest struct {
 // The returned machine will be incomplete and you will need to
 // poll the GetMachine method utils the `state` is equal to "running"
 // for logging in and getting ips.
-func (c *Client) CreateMachine(request CreateMachineRequest) (*Machine, error) {
+func (c *Client) CreateMachine(request *CreateMachineRequest) (*Machine, error) {
 	response := &Machine{}
 	_, err := c.Post(fmt.Sprintf("/%s/machines", c.User), request, response)
 	return response, err

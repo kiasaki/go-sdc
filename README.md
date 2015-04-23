@@ -1,4 +1,4 @@
-# go-sdc
+# go-sdc [![](https://travis-ci.org/kiasaki/go-sdc.svg)](https://travis-ci.org/kiasaki/go-sdc)
 
 `go-sdc` is a Go client library for accessing the SDC 7.0 API.
 
